@@ -46,6 +46,8 @@ function DisplayDashboard()
     preg_match('/Frequency:(\d+.\d+ GHz)/i', $strWlan0, $result);
     $strFrequency0 = $result[1];
 
+    $isAccessPoint0 = strcasecmp($strHWAddress0, $strSSID0) === 0;
+
     if (strpos($strWlan0, "UP") !== false && strpos($strWlan0, "RUNNING") !== false) {
         $status->addMessage('Interface wlan0 is up', 'success');
         $wlan0up = true;
@@ -90,6 +92,8 @@ function DisplayDashboard()
     $strSignalLevel1 = $result[1];
     preg_match('/Frequency:(\d+.\d+ GHz)/i', $strWlan1, $result);
     $strFrequency1 = $result[1];
+
+    $isAccessPoint1 = strcasecmp($strHWAddress1, $strSSID1) === 0;
 
     if (strpos($strWlan1, "UP") !== false && strpos($strWlan1, "RUNNING") !== false) {
         $status->addMessage('Interface wlan1 is up', 'success');
@@ -141,6 +145,8 @@ function DisplayDashboard()
                                     <h4>Interface Information</h4>
                                     <div class="info-item">Interface Name</div>
                                     wlan0</br>
+                                    <div class="info-item">Mode</div>
+                                    <?php echo $isAccessPoint0 ? 'Access Point' : 'Client'?></br>
                                     <div class="info-item">IP Address</div>
                                     <?php echo $strIPAddress0 ?></br>
                                     <div class="info-item">Subnet Mask</div>
@@ -214,6 +220,8 @@ function DisplayDashboard()
                                     <h4>Interface Information</h4>
                                     <div class="info-item">Interface Name</div>
                                     wlan1</br>
+                                    <div class="info-item">Mode</div>
+                                    <?php echo $isAccessPoint1 ? 'Access Point' : 'Client'?></br>
                                     <div class="info-item">IP Address</div>
                                     <?php echo $strIPAddress1 ?></br>
                                     <div class="info-item">Subnet Mask</div>
