@@ -180,22 +180,28 @@ function DisplayDHCPConfig() {
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Expire time</th>
-                <th>MAC Address</th>
-                <th>IP Address</th>
-                <th>Host name</th>
-                <th>Client ID</th>
+                  <th>Host name</th>
+                  <th>IP Address</th>
+                  <th>MAC Address</th>
+                  <th>Expire time</th>
+                  <th>Manufacturer</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <?php
-                exec( 'cat ' . RASPI_DNSMASQ_LEASES, $leases );
+                exec( 'dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES, $leases );
                 foreach( $leases as $lease ) {
-                  $lease_items = explode(' ', $lease);
-                  foreach( $lease_items as $lease_item ) {
-                    echo '<td>' . $lease_item . '</td>';
-                  }
+                    preg_match('/HOSTNAME ([-_a-zA-Z0-9]+)/i', $lease, $result);
+                    echo '<td>' . $result[1] . '</td>';
+                    preg_match('/IP ([0-9.]+)/i', $lease, $result);
+                    echo '<td>' . $result[1] . '</td>';
+                    preg_match('/MAC ([0-9a-f:]+)/i', $lease, $result);
+                    echo '<td>' . $result[1] . '</td>';
+                    preg_match('/END (\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)/i', $lease, $result);
+                    echo '<td>' . $result[1] . '</td>';
+                    preg_match('/MANUFACTURER (.*)/', $lease, $result);
+                    echo '<td>' . $result[1] . '</td>';
                   echo '</tr>';
                 };
                 ?>
@@ -209,7 +215,7 @@ function DisplayDHCPConfig() {
     </div><!-- /.tab-pane -->
     </div><!-- /.tab-content -->
     </div><!-- ./ Panel body -->
-    <div class="panel-footer"> Information provided by Dnsmasq</div>
+    <div class="panel-footer"> Information provided by ISC DHCP Server</div>
         </div><!-- /.panel-primary -->
     </div><!-- /.col-lg-12 -->
   </div><!-- /.row -->
