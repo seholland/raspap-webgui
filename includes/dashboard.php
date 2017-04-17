@@ -54,8 +54,8 @@ function DisplayDashboard()
     }
 
     //wlan1 info
-    exec('ifconfig wlan0', $return);
-    exec('iwconfig wlan0', $return);
+    exec('ifconfig wlan1', $return);
+    exec('iwconfig wlan1', $return);
 
     $strWlan1 = implode(" ", $return);
     $strWlan1 = preg_replace('/\s\s+/', ' ', $strWlan1);
