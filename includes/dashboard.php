@@ -19,6 +19,8 @@ function DisplayDashboard()
     // Parse results from ifconfig/iwconfig
     preg_match('/HWaddr ([0-9a-f:]+)/i', $strWlan0, $result);
     $strHWAddress0 = $result[1];
+    preg_match('/Access Point: ([0-9a-f:]+)/i', $strWlan0, $result);
+    $strHWAccessPoint0 = $result[1];
     preg_match('/inet addr:([0-9.]+)/i', $strWlan0, $result);
     $strIPAddress0 = $result[1];
     preg_match('/Mask:([0-9.]+)/i', $strWlan0, $result);
@@ -46,7 +48,7 @@ function DisplayDashboard()
     preg_match('/Frequency:(\d+.\d+ GHz)/i', $strWlan0, $result);
     $strFrequency0 = $result[1];
 
-    $isAccessPoint0 = strcasecmp($strHWAddress0, $strSSID0) === 0;
+    $isAccessPoint0 = strcasecmp($strHWAddress0, $strHWAccessPoint0) === 0;
 
     if (strpos($strWlan0, "UP") !== false && strpos($strWlan0, "RUNNING") !== false) {
         $status->addMessage('Interface wlan0 is up', 'success');
@@ -66,6 +68,8 @@ function DisplayDashboard()
     // Parse results from ifconfig/iwconfig
     preg_match('/HWaddr ([0-9a-f:]+)/i', $strWlan1, $result);
     $strHWAddress1 = $result[1];
+    preg_match('/Access Point: ([0-9a-f:]+)/i', $strWlan1, $result);
+    $strHWAccessPoint1 = $result[1];
     preg_match('/inet addr:([0-9.]+)/i', $strWlan1, $result);
     $strIPAddress1 = $result[1];
     preg_match('/Mask:([0-9.]+)/i', $strWlan1, $result);
@@ -93,7 +97,7 @@ function DisplayDashboard()
     preg_match('/Frequency:(\d+.\d+ GHz)/i', $strWlan1, $result);
     $strFrequency1 = $result[1];
 
-    $isAccessPoint1 = strcasecmp($strHWAddress1, $strSSID1) === 0;
+    $isAccessPoint1 = strcasecmp($strHWAddress1, $strHWAccessPoint1) === 0;
 
     if (strpos($strWlan1, "UP") !== false && strpos($strWlan1, "RUNNING") !== false) {
         $status->addMessage('Interface wlan1 is up', 'success');
