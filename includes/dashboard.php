@@ -54,6 +54,7 @@ function DisplayDashboard()
     }
 
     //wlan1 info
+    $return = '';
     exec('ifconfig wlan1', $return);
     exec('iwconfig wlan1', $return);
 
