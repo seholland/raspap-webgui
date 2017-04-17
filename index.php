@@ -51,6 +51,10 @@ include_once( 'includes/configure_client.php' );
 $output = $return = 0;
 $page = $_GET['page'];
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 if (empty($_SESSION['csrf_token'])) {
     if (function_exists('mcrypt_create_iv')) {
