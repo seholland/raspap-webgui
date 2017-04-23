@@ -190,7 +190,7 @@ function DisplayDHCPConfig() {
             <tbody>
               <tr>
                 <?php
-                exec( '/usr/sbin/dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES, $leases, $return );
+                exec( '/usr/sbin/dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES . '2>&1', $leases, $return );
                 var_dump($leases);
                 var_dump($return);
                 foreach( $leases as $lease ) {
