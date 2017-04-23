@@ -190,8 +190,9 @@ function DisplayDHCPConfig() {
             <tbody>
               <tr>
                 <?php
-                var_dump(exec( '/usr/sbin/dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES, $leases ));
+                exec( '/usr/sbin/dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES, $leases, $return );
                 var_dump($leases);
+                var_dump($return);
                 foreach( $leases as $lease ) {
                     preg_match('/HOSTNAME ([-_a-zA-Z0-9]+)/i', $lease, $result);
                     echo '<td>' . $result[1] . '</td>';
