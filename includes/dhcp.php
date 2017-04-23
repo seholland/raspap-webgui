@@ -1,7 +1,7 @@
 <?php
 
 include_once('includes/status_messages.php');
-require_once("includes/parser.class.php");
+
 
 /**
  *
@@ -11,22 +11,6 @@ require_once("includes/parser.class.php");
 function DisplayDHCPConfig()
 {
 	$status = new StatusMessages();
-	$parser = new ParseClass();
-	if (file_exists(RASPI_DHCPD_CONFIG) && is_readable(RASPI_DHCPD_CONFIG))
-	{
-		$open_file = fopen(RASPI_DHCPD_CONFIG, "r") or die("Unable to open DHCP leases file.");
-		if ($open_file)
-		{
-			$parser->parser($open_file);
-		}
-	}
-	else
-    {
-		$status->addMessage('Unable to read DHCP configuration.', 'danger');
-    }
-
-    var_dump($parser);
-
 	if (isset($_POST['savedhcpdsettings']))
 	{
 		if (CSRFValidate())
