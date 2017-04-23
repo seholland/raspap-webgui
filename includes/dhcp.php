@@ -190,20 +190,16 @@ function DisplayDHCPConfig() {
             <tbody>
               <tr>
                 <?php
-                exec( '/usr/sbin/dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES . ' 2>&1', $leases, $return );
+                exec( '/usr/sbin/dhcp-lease-list --parsable --lease ' . RASPI_ISC_DHCP_LEASES, $leases, $return );
                 var_dump($leases);
                 var_dump($return);
                 foreach( $leases as $lease ) {
-                    preg_match('/HOSTNAME ([-_a-zA-Z0-9]+)/i', $lease, $result);
+                    preg_match('/MAC (.*?) IP (.*?) HOSTNAME (.*?) BEGIN (.*?) END (.*?) MANUFACTURER (.*?)/i', $lease, $result);
+                    echo '<td>' . $result[3] . '</td>';
+                    echo '<td>' . $result[2] . '</td>';
                     echo '<td>' . $result[1] . '</td>';
-                    preg_match('/IP ([0-9.]+)/i', $lease, $result);
-                    echo '<td>' . $result[1] . '</td>';
-                    preg_match('/MAC ([0-9a-f:]+)/i', $lease, $result);
-                    echo '<td>' . $result[1] . '</td>';
-                    preg_match('/END (\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d)/i', $lease, $result);
-                    echo '<td>' . $result[1] . '</td>';
-                    preg_match('/MANUFACTURER (.*)/', $lease, $result);
-                    echo '<td>' . $result[1] . '</td>';
+                    echo '<td>' . $result[5] . '</td>';
+                    echo '<td>' . $result[6] . '</td>';
                   echo '</tr>';
                 };
                 ?>
