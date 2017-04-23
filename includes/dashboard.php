@@ -283,7 +283,7 @@ function DisplayDashboard()
                                 <?php if (!$wlan1up) {
                                     echo '<input type="submit" class="btn btn-success" value="Start wlan1" name="ifup_wlan1" />';
                                 } else {
-                                    echo '<input type="submit" class="btn btn-warning" value="Stop wlan1" name="ifdown_wlan1" />';
+//                                    echo '<input type="submit" class="btn btn-warning" value="Stop wlan1" name="ifdown_wlan1" />';
                                 }
                                 ?>
                                 <input type="button" class="btn btn-outline btn-primary" value="Refresh"
