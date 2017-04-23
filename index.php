@@ -24,6 +24,7 @@ define('RASPI_ADMIN_DETAILS', RASPI_CONFIG.'/raspap.auth');
 // Constants for configuration file paths.
 // These are typical for default RPi installs. Modify if needed.
 define('RASPI_DNSMASQ_CONFIG', '/etc/dnsmasq.conf');
+define('RASPI_DHCPD_CONFIG', '/etc/dhcp/dhcpd.conf');
 define('RASPI_DNSMASQ_LEASES', '/var/lib/misc/dnsmasq.leases');
 define('RASPI_ISC_DHCP_LEASES', '/var/lib/dhcp/dhcpd.leases');
 define('RASPI_HOSTAPD_CONFIG', '/etc/hostapd/hostapd.conf');
