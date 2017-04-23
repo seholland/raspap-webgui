@@ -25,6 +25,8 @@ function DisplayDHCPConfig()
 		$status->addMessage('Unable to read DHCP configuration.', 'danger');
     }
 
+    var_dump($parser->dhcptable);
+
 	if (isset($_POST['savedhcpdsettings']))
 	{
 		if (CSRFValidate())
