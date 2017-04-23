@@ -16,6 +16,7 @@ class ParseClass
         {
             $read_line = fgets($open_file, 4096);
             var_dump($read_line);
+            echo '</br>';
             if (substr($read_line, 0, 1) != "#") //check for comment (skip)
             {
                 $tok = strtok($read_line, " ");
