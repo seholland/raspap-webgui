@@ -194,7 +194,7 @@ function DisplayDHCPConfig() {
                 var_dump($leases);
                 var_dump($return);
                 foreach( $leases as $lease ) {
-                    preg_match('/MAC (.*?) IP (.*?) HOSTNAME (.*?) BEGIN (.*?) END (.*?) MANUFACTURER (.*?)/i', $lease, $result);
+                    preg_match('/MAC (.*?) IP (.*?) HOSTNAME (.*?) BEGIN (.*?) END (.*?) MANUFACTURER (.*)/i', $lease, $result);
                     echo '<td>' . $result[3] . '</td>';
                     echo '<td>' . $result[2] . '</td>';
                     echo '<td>' . $result[1] . '</td>';
